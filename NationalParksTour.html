@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-border-component@0.1.3/dist/aframe-border-component.min.js"></script>   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>National Parks Tour</title>
+    <!-- <meta name="author" content="name">
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here"> -->
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"> -->
+    <!-- <link rel="stylesheet" href="stylesheet.css" type="text/css"> -->
+  </head>
+  <body>
+    <!-- <img src="https://drive.google.com/uc?export=view&id=1NOPROkgbNIETwPJeqMbwuPlmHZ3IKJxm" /> -->
+    <a-scene>
+      <a-assets timeout="100000">
+        <img id="USTerrainAsset" src="https://nationalparktour.imfast.io/us.png" />
+        <a-asset-item id="moabTerrainAsset" src="https://nationalparktour.imfast.io/moab.glb" ></a-asset-item>
+        <a-asset-item id="yosemiteTerrainAsset" src="https://nationalparktour.imfast.io/yosemite.glb" ></a-asset-item>
+        <a-asset-item id="deadHorseTerrainAsset" src="https://nationalparktour.imfast.io/deadhorse.glb" ></a-asset-item>
+
+        <a-mixin id="portal" metalness="0.2" animation="property: opacity; from: 1; to: 0.5; dur: 1000; dir: alternate; loop: true; startEvents: default; pauseEvents: enlarge; autoplay: true; enabled: true" animation__enlarge="property: radius; from: 5; to: 7; dur: 200; loop: false; startEvents: enlarge; pauseEvents: shrink"></a-mixin>
+      </a-assets>
+
+      <a-entity id="USTerrainContainer" position="0 0 0" rotation="-90 0 0" visible="true">
+        <a-sphere class="collidable" mixin="portal" radius="5" color="white" position="-10.675 -3.672 1.523" scale="0.2 0.2 0.2" link="moabContainer"></a-sphere>
+        <a-sphere class="collidable" mixin="portal" radius="5" color="white" position="-20.675 -3.672 1.523" scale="0.2 0.2 0.2" link="yosemiteContainer"></a-sphere>
+        <a-image src="#USTerrainAsset" width="4288" height="2459" scale="0.02 0.02 0.02"></a-image>
+        <a-sky src="https://nationalparktour.imfast.io/stars.jpg" ></a-sky>
+      </a-entity> 
+        <a-entity id="moabContainer" position="0 0 0" rotation="0 0 0" visible="false">
+          <a-sphere class="collidable" mixin="portal" radius="5" color="white" position="3.123 2 -8.987" scale="0.2 0.2 0.2" link="deadHorseTerrainContainer"></a-sphere>
+          <a-entity gltf-model="#moabTerrainAsset" scale="0.0002 0.0002 0.0002"></a-entity>
+          <a-sky src="https://nationalparktour.imfast.io/stars.jpg" ></a-sky>
+        </a-entity> 
+          <a-entity id="deadHorseTerrainContainer" position="0 -2 0"  visible="false">
+            <a-sky color="#87CEEB" radius="20"></a-sky>
+            <a-sphere class="collidable" mixin="portal" radius="5" position="-5.866 2.570 -0.521" scale="0.1 0.1 0.1" src="https://nationalparktour.imfast.io/dead-horse%201.jpg" link="deadHorseOverlook" ></a-sphere>
+            <a-sphere class="collidable" mixin="portal" radius="5" position="-0.045 1.961 -3.424" scale="0.1 0.1 0.1" src="https://nationalparktour.imfast.io/potash%201.jpg" link="potash1" ></a-sphere>
+            <a-entity gltf-model="#deadHorseTerrainAsset" scale="0.005 0.005 0.005"></a-entity> 
+          </a-entity>
+            <a-sky id="deadHorseOverlook" src="https://nationalparktour.imfast.io/dead-horse%201.jpg" radius="20" visible="false"></a-sky>
+            <a-sky id="potash1" src="https://nationalparktour.imfast.io/potash%201.jpg" visible="false" radius="20"></a-sky>
+        <a-entity id="yosemiteContainer" position="0 0 -10" rotation="-90 0 0" visible="false">
+          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="3.123 0.647 -8.987" scale="0.5 0.5 0.5" link="deadHorseTerrainContainer"></a-sphere>
+          <a-entity gltf-model="#yosemiteTerrainAsset" scale="0.0002 0.0002 0.0002"></a-entity>
+          <a-sky src="https://nationalparktour.imfast.io/stars.jpg"></a-sky>
+        </a-entity> 
+
+        <a-sphere id="back" class="collidable" mixin="portal" radius="5" color="white" position="0 20 0" scale="1 1 1"></a-sphere>
+
+      <a-entity id="rig" movement-controls position="0 0 0">
+
+        <a-camera id="camera" look-controls="pointerLockEnabled: true">
+          <a-sky id="transition" color="#000000" opacity="0" radius="1" animation__fadeout="property: opacity; from: 0; to: 1; dur: 500; startEvents: fadeout" animation__fadein="property: opacity; from: 1; to: 0; dur: 1000; loop: false; startEvents: fadein"></a-sky>
+          <a-entity id="cursor" cursor="fuse: true; fuseTimeout: 500"
+          position="0 0 -1"
+          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+          material="color: black; shader: flat" raycaster="objects: .collidable; far: 500">
+          </a-entity>
+        </a-camera>
+
+        <a-entity laser-controls="hand: left"></a-entity>
+        <a-entity id="rightController" laser-controls="hand: right" raycaster="objects: .collidable; far: 500"></a-entity>
+      </a-entity>
+
+
+      <a-entity light="type: ambient; color: #FFFFF; intensity: 1.5" position="0 8.504 0" ></a-entity>
+
+      
+    </a-scene>
+  </body>
+  <script>
+    
+    class Stack {
+      constructor(){
+          this.data = [];
+          this.top = 0;
+      }
+      push(element) {
+        this.data[this.top] = element;
+        this.top = this.top + 1;
+      }
+      length() {
+          return this.top;
+      }
+      peek() {
+          return this.data[this.top-1];
+      }
+      isEmpty() {
+        return this.top === 0;
+      }
+      pop() {
+        if( this.isEmpty() === false ) {
+          this.top = this.top -1;
+          return this.data.pop(); // removes the last element
+        }
+      }
+      print() {
+          var top = this.top - 1; // because top points to index where new    element to be inserted
+          while(top >= 0) { // print upto 0th index
+              console.log(this.data[top]);
+              top--;
+          }
+        }
+        reverse() {
+          this._reverse(this.top - 1 );
+        }
+        _reverse(index) {
+          if(index != 0) {
+              this._reverse(index-1);
+          }
+          console.log(this.data[index]);
+        }
+    }
+    var scene = document.getElementsByTagName("a-scene")[0];
+    var transition = document.getElementById("transition");
+    var rig = document.getElementById("rig");
+
+    var intersecting = null;
+    var reverse = new Stack();
+    var current = document.getElementById("USTerrainContainer");
+    // var transitioning = false;
+    
+    var rightController = document.getElementById("rightController");
+    var cursor = document.getElementById("cursor");
+
+
+    function enterSelected() {
+      var selected = intersecting;
+      if (selected) {
+        selected.setAttribute("class", "disabled");
+        if (selected.id == "back" && !reverse.isEmpty()) {
+          console.log("Reverse: ", reverse);
+          transition.emit('fadeout');
+          // transition.addEventListener('animationcomplete__fadeout', event => {
+            console.log("Animation complete");
+            rig.setAttribute("position", "0 0 0");
+            current.setAttribute("visible", "false");
+            current = reverse.pop();
+            current.setAttribute("visible", "true");
+            selected.emit("default");
+            transition.emit('fadein');
+          // })
+
+        }
+        else if (selected.id == "back" && reverse.isEmpty()) {
+          console.log("Nothing previous");
+        }
+        else {
+          console.log("Forward");
+          // transitioning = true;
+          // intersecting.setAttribute("animation", "property: radius; to: 1000; dur: 1000; loop: false");
+          transition.emit('fadeout');
+          // transition.addEventListener('animationcomplete__fadeout', event => {
+            rig.setAttribute("position", "0 0 0");
+            current.setAttribute("visible", "false");
+            reverse.push(current);
+            current = document.getElementById(selected.getAttribute("link")); 
+            current.setAttribute("visible", "true");
+            selected.emit("default");
+            transition.emit('fadein');
+            // transitioning = false;
+            // selected = null;
+          // })
+        }
+        selected.setAttribute("class", "collidable");
+      }
+      else {
+        console.log("No item selected");
+      }
+    }
+
+    rightController.addEventListener('triggerdown', function() {
+      enterSelected();
+    });
+
+    cursor.addEventListener('mouseup', function() {
+      console.log("click");
+      enterSelected();
+    });
+
+    document.querySelectorAll('.collidable').forEach(item => {
+      item.addEventListener('raycaster-intersected', event => {
+        if (event.target.parentElement.getAttribute("visible")){
+          console.log(event.target);
+          console.log(event.target.parentElement.getAttribute("visible"));
+          console.log("hit");
+          intersecting = event.target;
+          intersecting.setAttribute("animation__shrink", "property: radius; from: " + intersecting.getAttribute("radius") + "; to: 5; dur: 200; loop: false; autoplay: false; startEvents: shrink");
+          intersecting.setAttribute("opacity", "1");
+          intersecting.emit("enlarge");
+        }
+        else {
+          console.log("Invisible hit");
+        }
+      })
+    });
+
+    document.querySelectorAll('.collidable').forEach(item => {
+      item.addEventListener('raycaster-intersected-cleared', event => { 
+          console.log("cleared");
+          intersecting.emit("shrink");
+          intersecting.emit("default");
+          intersecting = null;
+      })
+    });
+
+
+
+
+  </script>
+</html>
