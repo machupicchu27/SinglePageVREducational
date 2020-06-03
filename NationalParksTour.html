@@ -24,13 +24,15 @@
         <a-asset-item id="moabTerrainAsset" src="https://nationalparktour.imfast.io/moab.glb" ></a-asset-item>
         <a-asset-item id="yosemiteTerrainAsset" src="https://nationalparktour.imfast.io/yosemite.glb" ></a-asset-item>
         <a-asset-item id="deadHorseTerrainAsset" src="https://nationalparktour.imfast.io/deadhorse.glb" ></a-asset-item>
+        <a-asset-item id="gcTerrainAsset" src="https://nationalparktour.imfast.io/grand_canyon.glb" ></a-asset-item>
 
         <a-mixin id="portal" metalness="0.2" animation="property: opacity; from: 1; to: 0.5; dur: 1000; dir: alternate; loop: true; startEvents: default; pauseEvents: enlarge; autoplay: true" animation__enlarge="property: radius; from: 5; to: 7; dur: 200; loop: false; startEvents: enlarge; pauseEvents: shrink" animation__shrink="property: radius; to: 5; dur: 200; loop: false; autoplay: false; startEvents: shrink"></a-mixin>
       </a-assets>
 
-      <a-entity id="USTerrainContainer" position="0 0 0" rotation="-90 0 0" visible="true">
+      <a-entity id="USTerrainContainer" position="1 0 -14" rotation="-90 0 0" visible="true">
         <a-sphere class="collidable" mixin="portal" radius="5" color="white" position="-10.675 -3.672 1.523" scale="0.2 0.2 0.2" link="moabContainer"></a-sphere>
-        <a-sphere class="collidable" mixin="portal" radius="5" color="white" position="-20.675 -3.672 1.523" scale="0.2 0.2 0.2" link="yosemiteContainer"></a-sphere>
+        <a-sphere class="collidable" mixin="portal" radius="5" color="white" position="-20.177 -5.495 1.523" scale="0.2 0.2 0.2" link="yosemiteContainer"></a-sphere>
+        <a-sphere class="collidable" mixin="portal" radius="5" color="white" position="-13 -7.094 1.523" scale="0.2 0.2 0.2" link="gcContainer"></a-sphere>
         <a-image src="#USTerrainAsset" width="4288" height="2459" scale="0.02 0.02 0.02"></a-image>
         <a-sky src="https://nationalparktour.imfast.io/stars.jpg" ></a-sky>
       </a-entity> 
@@ -49,10 +51,26 @@
             <a-sky id="potash1" src="https://nationalparktour.imfast.io/potash%201.jpg" visible="false" ></a-sky>
         <a-entity id="yosemiteContainer" position="-10 -3 10" rotation="0 0 0" visible="false">
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="-2.436 2.7 1.353" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/el_cap.jpg" link="elCapitan"></a-sphere>
+          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="8.062 3.530 -1.623" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/half_dome.jpg" link="halfDome"></a-sphere>
+          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="-8.082 2.7 2.566" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/tunnel_view.jpg" link="tunnelView"></a-sphere>
           <a-entity gltf-model="#yosemiteTerrainAsset" scale="0.001 0.001 0.001"></a-entity>
-          <!-- <a-sky src="https://nationalparktour.imfast.io/stars.jpg"></a-sky> -->
+          <!-- <a-sound src="src: url(click.mp3)" autoplay="true" position="0 0 0"></a-sound> -->
+          <a-sky src="https://nationalparktour.imfast.io/stars.jpg"></a-sky>
         </a-entity> 
           <a-sky id="elCapitan" src="https://nationalparktour.imfast.io/el_cap.jpg" visible="false"></a-sky>
+          <a-sky id="halfDome" src="https://nationalparktour.imfast.io/half_dome.jpg" visible="false"></a-sky>
+          <a-sky id="tunnelView" src="https://nationalparktour.imfast.io/tunnel_view.jpg" visible="false"></a-sky>
+        <a-entity id="gcContainer" position="-13 -3 15" rotation="0 90 0" visible="false">
+          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="23.916 2.7 17.832" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/grandview.jpg" link="grandview"></a-sphere>
+          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="33.206 2.7 8.554" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/angels_window.jpg" link="angels_window"></a-sphere>
+          <a-entity gltf-model="#gcTerrainAsset" scale="0.0007 0.0007 0.0007"></a-entity>
+          <!-- <a-sound src="src: url(click.mp3)" autoplay="true" position="0 0 0"></a-sound> -->
+          <a-sky src="https://nationalparktour.imfast.io/stars.jpg"></a-sky>
+        </a-entity>
+          <a-sky id="grandview" src="https://nationalparktour.imfast.io/grandview.jpg" visible="false"></a-sky>
+          <a-sky id="angels_window" src="https://nationalparktour.imfast.io/angels_window.jpg" visible="false"></a-sky>
+
+
 
 
       <a-sphere id="back" class="collidable"  mixin="portal" radius="5" color="white" position="0 50 0" scale="2 2 2" opacity="0.5" animation="enabled: false"></a-sphere>
