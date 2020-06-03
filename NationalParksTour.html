@@ -16,14 +16,14 @@
   </head>
   <body>
     <!-- <img src="https://drive.google.com/uc?export=view&id=1NOPROkgbNIETwPJeqMbwuPlmHZ3IKJxm" /> -->
-    <a-scene>
+    <a-scene onload="sceneLoaded()">
       <a-assets timeout="100000">
         <img id="USTerrainAsset" src="https://nationalparktour.imfast.io/us.png" />
         <a-asset-item id="moabTerrainAsset" src="https://nationalparktour.imfast.io/moab.glb" ></a-asset-item>
         <a-asset-item id="yosemiteTerrainAsset" src="https://nationalparktour.imfast.io/yosemite.glb" ></a-asset-item>
         <a-asset-item id="deadHorseTerrainAsset" src="https://nationalparktour.imfast.io/deadhorse.glb" ></a-asset-item>
 
-        <a-mixin id="portal" metalness="0.2" animation="property: opacity; from: 1; to: 0.5; dur: 1000; dir: alternate; loop: true; startEvents: default; pauseEvents: enlarge; autoplay: true; enabled: true" animation__enlarge="property: radius; from: 5; to: 7; dur: 200; loop: false; startEvents: enlarge; pauseEvents: shrink"></a-mixin>
+        <a-mixin id="portal" metalness="0.2" animation="property: opacity; from: 1; to: 0.5; dur: 1000; dir: alternate; loop: true; startEvents: default; pauseEvents: enlarge; autoplay: true" animation__enlarge="property: radius; from: 5; to: 7; dur: 200; loop: false; startEvents: enlarge; pauseEvents: shrink" animation__shrink="property: radius; to: 5; dur: 200; loop: false; autoplay: false; startEvents: shrink"></a-mixin>
       </a-assets>
 
       <a-entity id="USTerrainContainer" position="0 0 0" rotation="-90 0 0" visible="true">
@@ -43,33 +43,32 @@
             <a-sphere class="collidable" mixin="portal" radius="5" position="-0.045 1.961 -3.424" scale="0.1 0.1 0.1" src="https://nationalparktour.imfast.io/potash%201.jpg" link="potash1" ></a-sphere>
             <a-entity gltf-model="#deadHorseTerrainAsset" scale="0.005 0.005 0.005"></a-entity> 
           </a-entity>
-            <a-sky id="deadHorseOverlook" src="https://nationalparktour.imfast.io/dead-horse%201.jpg" radius="20" visible="false"></a-sky>
-            <a-sky id="potash1" src="https://nationalparktour.imfast.io/potash%201.jpg" visible="false" radius="20"></a-sky>
-        <a-entity id="yosemiteContainer" position="0 0 -10" rotation="0 0 0" visible="false">
-          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="3.123 0.647 -8.987" scale="0.5 0.5 0.5" link="deadHorseTerrainContainer"></a-sphere>
-          <a-entity gltf-model="#yosemiteTerrainAsset" scale="0.002 0.002 0.002"></a-entity>
+            <a-sky id="deadHorseOverlook" src="https://nationalparktour.imfast.io/dead-horse%201.jpg" visible="false"></a-sky>
+            <a-sky id="potash1" src="https://nationalparktour.imfast.io/potash%201.jpg" visible="false" ></a-sky>
+        <a-entity id="yosemiteContainer" position="-10 -3 10" rotation="0 0 0" visible="false">
+          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="-2.436 2.645 1.353" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/el_cap.jpg" link="elCapitan"></a-sphere>
+          <a-entity gltf-model="#yosemiteTerrainAsset" scale="0.001 0.001 0.001"></a-entity>
           <a-sky src="https://nationalparktour.imfast.io/stars.jpg"></a-sky>
         </a-entity> 
+          <a-sky id="elCapitan" src="https://nationalparktour.imfast.io/el_cap.jpg" visible="false"></a-sky>
 
-        <a-sphere id="back" class="collidable" mixin="portal" radius="5" color="white" position="0 20 0" scale="1 1 1"></a-sphere>
+
+      <a-sphere id="back" class="collidable"  mixin="portal" radius="5" color="white" position="0 50 0" scale="2 2 2" opacity="0.5" animation="enabled: false"></a-sphere>
 
       <a-entity id="rig" movement-controls position="0 0 0">
 
         <a-camera id="camera" look-controls="pointerLockEnabled: true">
-          <a-sky id="transition" color="#000000" opacity="0" radius="1" animation__fadeout="property: opacity; from: 0; to: 1; dur: 500; startEvents: fadeout" animation__fadein="property: opacity; from: 1; to: 0; dur: 1000; loop: false; startEvents: fadein"></a-sky>
-          <a-entity id="cursor" cursor="fuse: true; fuseTimeout: 500"
-          position="0 0 -1"
-          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-          material="color: black; shader: flat" raycaster="objects: .collidable; far: 500">
+          <a-sky id="transition" color="#000000" opacity="0" radius="1" animation__fadeout="property: opacity; from: 0; to: 1; dur: 500; startEvents: fadeout" animation__fadein="property: opacity; from: 1; to: 0; dur: 500; loop: false; startEvents: fadein"></a-sky>
+          <a-entity id="cursor" cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat" raycaster="objects: .collidable; near: 0; far: 500">
           </a-entity>
         </a-camera>
 
         <a-entity laser-controls="hand: left"></a-entity>
-        <a-entity id="rightController" laser-controls="hand: right" raycaster="objects: .collidable; far: 500"></a-entity>
+        <a-entity id="rightController" laser-controls="hand: right" raycaster="objects: .collidable; near: 0; far: 500"></a-entity>
       </a-entity>
 
 
-      <a-entity light="type: ambient; color: #FFFFF; intensity: 1.5" position="0 8.504 0" ></a-entity>
+      <a-entity light="type: ambient; color: #FFFFF; intensity: 2" position="0 8.504 0" ></a-entity>
 
       
     </a-scene>
@@ -121,6 +120,7 @@
     var transition = document.getElementById("transition");
     var rig = document.getElementById("rig");
 
+    var collidables = document.querySelectorAll('.collidable');
     var intersecting = null;
     var reverse = new Stack();
     var current = document.getElementById("USTerrainContainer");
@@ -129,6 +129,12 @@
     var rightController = document.getElementById("rightController");
     var cursor = document.getElementById("cursor");
 
+    scene.addEventListener('loaded', function () {
+      console.log("sceneLoaded");
+      collidables.forEach(item => {
+        item.emit("default");
+      });
+    });
 
     function enterSelected() {
       var selected = intersecting;
@@ -137,14 +143,16 @@
         if (selected.id == "back" && !reverse.isEmpty()) {
           console.log("Reverse: ", reverse);
           transition.emit('fadeout');
-          // transition.addEventListener('animationcomplete__fadeout', event => {
-            console.log("Animation complete");
+          setTimeout(function () {
             rig.setAttribute("position", "0 0 0");
             current.setAttribute("visible", "false");
             current = reverse.pop();
             current.setAttribute("visible", "true");
             selected.emit("default");
             transition.emit('fadein');
+          }, 550);
+          // transition.addEventListener('animationcomplete__fadeout', event => {
+            
           // })
 
         }
@@ -156,7 +164,7 @@
           // transitioning = true;
           // intersecting.setAttribute("animation", "property: radius; to: 1000; dur: 1000; loop: false");
           transition.emit('fadeout');
-          // transition.addEventListener('animationcomplete__fadeout', event => {
+          setTimeout(function () {
             rig.setAttribute("position", "0 0 0");
             current.setAttribute("visible", "false");
             reverse.push(current);
@@ -164,6 +172,9 @@
             current.setAttribute("visible", "true");
             selected.emit("default");
             transition.emit('fadein');
+          }, 550);
+          // transition.addEventListener('animationcomplete__fadeout', event => {
+
             // transitioning = false;
             // selected = null;
           // })
@@ -180,18 +191,17 @@
     });
 
     cursor.addEventListener('mouseup', function() {
-      console.log("click");
       enterSelected();
     });
 
-    document.querySelectorAll('.collidable').forEach(item => {
+    collidables.forEach(item => {
       item.addEventListener('raycaster-intersected', event => {
         if (event.target.parentElement.getAttribute("visible")){
           console.log(event.target);
           console.log(event.target.parentElement.getAttribute("visible"));
           console.log("hit");
           intersecting = event.target;
-          intersecting.setAttribute("animation__shrink", "property: radius; from: " + intersecting.getAttribute("radius") + "; to: 5; dur: 200; loop: false; autoplay: false; startEvents: shrink");
+          // intersecting.setAttribute("animation__shrink", "property: radius; from: " + intersecting.getAttribute("radius") + "; to: 5; dur: 200; loop: false; autoplay: false; startEvents: shrink");
           intersecting.setAttribute("opacity", "1");
           intersecting.emit("enlarge");
         }
@@ -201,10 +211,11 @@
       })
     });
 
-    document.querySelectorAll('.collidable').forEach(item => {
+    collidables.forEach(item => {
       item.addEventListener('raycaster-intersected-cleared', event => { 
           console.log("cleared");
           intersecting.emit("shrink");
+          intersecting.setAttribute("opacity", "0.5");
           intersecting.emit("default");
           intersecting = null;
       })
