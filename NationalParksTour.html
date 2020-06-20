@@ -17,7 +17,6 @@
     <!-- <link rel="stylesheet" href="stylesheet.css" type="text/css"> -->
   </head>
   <body>
-    <!-- <img src="https://drive.google.com/uc?export=view&id=1NOPROkgbNIETwPJeqMbwuPlmHZ3IKJxm" /> -->
     <a-scene onload="sceneLoaded()">
       <a-assets timeout="200000">
         <img id="USTerrainAsset" src="https://nationalparktour.imfast.io/us.png" />
@@ -25,7 +24,7 @@
         <a-asset-item id="yosemiteTerrainAsset" src="https://nationalparktour.imfast.io/yosemite.glb" ></a-asset-item>
         <a-asset-item id="deadHorseTerrainAsset" src="https://nationalparktour.imfast.io/deadhorse.glb" ></a-asset-item>
         <a-asset-item id="gcTerrainAsset" src="https://nationalparktour.imfast.io/grand_canyon.glb" ></a-asset-item>
-        <a-asset-item id="yellowstoneTerrainAsset" src="https://nationalparktour.imfast.io/yellowstone.glb" ></a-asset-item>
+        <!-- <a-asset-item id="yellowstoneTerrainAsset" src="https://nationalparktour.imfast.io/yellowstone.glb" ></a-asset-item> -->
         <a-mixin id="portal" metalness="0.2" animation="property: opacity; from: 1; to: 0.5; dur: 1000; dir: alternate; loop: true; startEvents: default; pauseEvents: enlarge; autoplay: true" animation__enlarge="property: radius; from: 5; to: 7; dur: 200; loop: false; startEvents: enlarge; pauseEvents: shrink" animation__shrink="property: radius; to: 5; dur: 200; loop: false; autoplay: false; startEvents: shrink"></a-mixin>
       </a-assets>
 
@@ -33,7 +32,7 @@
         <a-sphere class="collidable" mixin="portal" static-body radius="5" color="white" position="-10.675 -3.672 1.523" scale="0.2 0.2 0.2" link="deadHorseTerrainContainer"></a-sphere>
         <a-sphere class="collidable" mixin="portal" static-body radius="5" color="white" position="-20.177 -5.495 1.523" scale="0.2 0.2 0.2" link="yosemiteContainer"></a-sphere>
         <a-sphere class="collidable" mixin="portal" static-body radius="5" color="white" position="-13 -7.094 1.523" scale="0.2 0.2 0.2" link="gcContainer"></a-sphere>
-        <a-sphere class="collidable" mixin="portal" static-body radius="5" color="white" position="-11.561 2.509 1.523" scale="0.2 0.2 0.2" link="yellowstoneContainer"></a-sphere>
+        <!-- <a-sphere class="collidable" mixin="portal" static-body radius="5" color="white" position="-11.561 2.509 1.523" scale="0.2 0.2 0.2" link="yellowstoneContainer"></a-sphere> -->
         <a-image src="#USTerrainAsset" width="4288" height="2459" scale="0.02 0.02 0.02"></a-image>
         <a-plane color="#172759" position="0 0 -0.1" height="1000" width="1000" rotation="0 0 0"></a-plane>
 
@@ -47,7 +46,7 @@
 
           <a-sky color="#9FC5E9" ></a-sky>
         </a-entity>  -->
-          <a-entity id="deadHorseTerrainContainer" position="0 -5 0"  visible="false">
+          <a-entity id="deadHorseTerrainContainer" position="0 -6 0"  visible="false">
             <a-entity light="type: ambient; color: #FFFFF; intensity: 0.5" position="0 8.504 0" ></a-entity>
 
             <a-sky color="#9FC5E9"></a-sky>
@@ -58,7 +57,7 @@
           </a-entity>
             <a-sky id="deadHorseOverlook" class="360image" src="https://nationalparktour.imfast.io/dead-horse%201.jpg" visible="false"></a-sky>
             <a-sky id="potash1" class="360image" src="https://nationalparktour.imfast.io/potash%201.jpg" visible="false" ></a-sky>
-        <a-entity id="yosemiteContainer" position="-10 -5 10" rotation="0 0 0" visible="false">
+        <a-entity id="yosemiteContainer" position="-10 -10 10" rotation="0 0 0" visible="false">
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="26.317 3.842 -4.046" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/el_cap.jpg" link="elCapitan"></a-sphere>
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="-2.982 4.781 12.013" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/half_dome.jpg" link="halfDome"></a-sphere>
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="15.464 4.407 -11.092" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/tunnel_view.jpg" link="tunnelView"></a-sphere>
@@ -70,7 +69,7 @@
           <a-sky id="elCapitan" class="360image" src="https://nationalparktour.imfast.io/el_cap.jpg" visible="false"></a-sky>
           <a-sky id="halfDome" class="360image" src="https://nationalparktour.imfast.io/half_dome.jpg" visible="false"></a-sky>
           <a-sky id="tunnelView" class="360image" src="https://nationalparktour.imfast.io/tunnel_view.jpg" visible="false"></a-sky>
-        <a-entity id="gcContainer" position="-13 -3 15" rotation="0 90 0" visible="false">
+        <a-entity id="gcContainer" position="-13 -6 15" rotation="0 90 0" visible="false">
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="23.916 2.7 17.832" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/grandview.jpg" link="grandview"></a-sphere>
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="33.206 2.7 8.554" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/angels_window.jpg" link="angels_window"></a-sphere>
           <a-entity gltf-model="#gcTerrainAsset" scale="0.0007 0.0007 0.0007"></a-entity>
@@ -82,13 +81,13 @@
         </a-entity>
           <a-sky id="grandview" class="360image" src="https://nationalparktour.imfast.io/grandview.jpg" visible="false"></a-sky>
           <a-sky id="angels_window" class="360image" src="https://nationalparktour.imfast.io/angels_window.jpg" visible="false"></a-sky>
-        <a-entity id="yellowstoneContainer" position="0 -3 0" rotation="0 0 0" visible="false">
+        <!-- <a-entity id="yellowstoneContainer" position="0 -3 0" rotation="0 0 0" visible="false">
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="23.916 2.7 17.832" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/grandview.jpg" link="grandview"></a-sphere>
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="33.206 2.7 8.554" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/angels_window.jpg" link="angels_window"></a-sphere>
           <a-entity gltf-model="#yellowstoneTerrainAsset" rotation="0 90 0" scale="0.001 0.001 0.001"></a-entity>
           <a-plane color="#F69C69" position="0 -0.378 0" height="1000" width="1000" rotation="-90 0 0"></a-plane>
-          <!-- <a-sky src="https://nationalparktour.imfast.io/stars.jpg"></a-sky> -->
-        </a-entity>
+          <a-sky src="https://nationalparktour.imfast.io/stars.jpg"></a-sky>
+        </a-entity> -->
 
 
 
@@ -177,6 +176,7 @@
       });
     });
 
+  //TODO: fix conditional to be more efficient
     function enterSelected() {
       var selected = intersecting;
       if (selected) {
@@ -188,22 +188,10 @@
             rig.setAttribute("position", "0 0 0");
             current.setAttribute("visible", "false");
             current = reverse.pop();
-
-            // if (current.classList.contains("360image")) {
-            //   scene.setAttribute("fog", "type: exponential; color: #AAA; near: 1 1000; density: 0");
-            // }
-            // else {
-            //   scene.setAttribute("fog", "type: exponential; color: #AAA; near: 1 1000; density: 0.05");
-            // }
-
             current.setAttribute("visible", "true");
             selected.emit("default");
             transition.emit('fadein');
           }, 550);
-          // transition.addEventListener('animationcomplete__fadeout', event => {
-            
-          // })
-
         }
         else if (selected.id == "back" && reverse.isEmpty()) {
           console.log("Nothing previous");
@@ -218,23 +206,10 @@
             current.setAttribute("visible", "false");
             reverse.push(current);
             current = document.getElementById(selected.getAttribute("link")); 
-
-            // if (current.classList.contains("360image")) {
-            //   scene.setAttribute("fog", "type: exponential; color: #AAA; near: 1 1000; density: 0");
-            // }
-            // else {
-            //   scene.setAttribute("fog", "type: exponential; color: #AAA; near: 1 1000; density: 0.05");
-            // }
-
             current.setAttribute("visible", "true");
             selected.emit("default");
             transition.emit('fadein');
           }, 550);
-          // transition.addEventListener('animationcomplete__fadeout', event => {
-
-            // transitioning = false;
-            // selected = null;
-          // })
         }
         selected.setAttribute("class", "collidable");
       }
@@ -260,7 +235,6 @@
         if (event.target.parentElement.getAttribute("visible")){
           intersecting = event.target;
           console.log(event.target);
-          // intersecting.setAttribute("animation__shrink", "property: radius; from: " + intersecting.getAttribute("radius") + "; to: 5; dur: 200; loop: false; autoplay: false; startEvents: shrink");
           intersecting.setAttribute("opacity", "1");
           intersecting.emit("enlarge");
         }
