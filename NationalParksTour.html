@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://unpkg.com/aframe-border-component@0.1.3/dist/aframe-border-component.min.js"></script>   
     <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/twoway-motion/twoway-motion.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,7 +20,7 @@
   <body style="margin: 1in">
     <!-- <img src="https://nationalparktour.imfast.io/rrcc_logo.png"/> -->
     <h1>National Parks Tour</h1>
-    <p>v1.0.0-alpha</p>
+    <p>v1.0.1-alpha</p>
     <a-scene onload="sceneLoaded()" embedded style="height: 720px; width: 1280px">
       <a-assets timeout="200000">
         <img id="USTerrainAsset" src="https://nationalparktour.imfast.io/us.png" />
@@ -93,9 +93,6 @@
           <a-sky src="https://nationalparktour.imfast.io/stars.jpg"></a-sky>
         </a-entity> -->
 
-
-
-
       <a-sphere id="back" class="collidable"  mixin="portal" radius="5" color="white" position="0 50 0" scale="2 2 2" opacity="0.5" animation="enabled: false"></a-sphere>
 
       <a-entity id="rig" movement-controls position="0 0 0">
@@ -115,9 +112,9 @@
 
       
     </a-scene>
-    <button type="button" class="btn btn-warning">Report Bug</button>    
+    <a href="https://github.com/machupicchu27/SinglePageVREducational/issues" role="button" class="btn btn-warning" >Report Bug</a href>    
     <p>Welcome! The goal of this project is to provide a cross platform interactive tour of major national parks in a single page of HTML. Since this app is currently in alpha you may experience bugs.</p> 
-    <p>Please help make this software better by reporting them as issues using the button above. We appreciate your patience! In the mean time check out the "Common Issues and Troubleshooting section below.</p>
+    <p>Please help make this software better by reporting them as issues using the button above. We appreciate your patience! In the mean time check out the "Common Issues and Troubleshooting" section below.</p>
     <strong>Instructions:</strong>
     <p>{User instructions will go in a drop down here}</p>
     <strong>Temporary Solutions to Common Issues</strong>
