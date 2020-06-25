@@ -6,6 +6,7 @@
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://unpkg.com/aframe-border-component@0.1.3/dist/aframe-border-component.min.js"></script>   
     <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/twoway-motion/twoway-motion.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,8 +17,11 @@
     <!-- <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon"> -->
     <!-- <link rel="stylesheet" href="stylesheet.css" type="text/css"> -->
   </head>
-  <body>
-    <a-scene onload="sceneLoaded()">
+  <body style="margin: 1in">
+    <!-- <img src="https://nationalparktour.imfast.io/rrcc_logo.png"/> -->
+    <h1>National Parks Tour</h1>
+    <p>v1.0.0-alpha</p>
+    <a-scene onload="sceneLoaded()" embedded style="height: 720px; width: 1280px">
       <a-assets timeout="200000">
         <img id="USTerrainAsset" src="https://nationalparktour.imfast.io/us.png" />
         <!-- <a-asset-item id="moabTerrainAsset" src="https://nationalparktour.imfast.io/moab.glb" ></a-asset-item> -->
@@ -29,9 +33,9 @@
       </a-assets>
 
       <a-entity id="USTerrainContainer" position="1 -3 -14" rotation="-90 0 0" visible="true">
-        <a-sphere class="collidable" mixin="portal" static-body radius="5" color="white" position="-10.675 -3.672 1.523" scale="0.2 0.2 0.2" link="deadHorseTerrainContainer"></a-sphere>
-        <a-sphere class="collidable" mixin="portal" static-body radius="5" color="white" position="-20.177 -5.495 1.523" scale="0.2 0.2 0.2" link="yosemiteContainer"></a-sphere>
-        <a-sphere class="collidable" mixin="portal" static-body radius="5" color="white" position="-13 -7.094 1.523" scale="0.2 0.2 0.2" link="gcContainer"></a-sphere>
+        <a-sphere class="collidable" mixin="portal" static-body radius="5" src="https://nationalparktour.imfast.io/deadhorsescreenshot.png" position="-10.675 -3.672 1.523" rotation="90 0 0" scale="0.2 0.2 0.2" link="deadHorseTerrainContainer"></a-sphere>
+        <a-sphere class="collidable" mixin="portal" static-body radius="5" src="https://nationalparktour.imfast.io/yosemitescreenshot.png" position="-20.177 -5.495 1.523" rotation="90 0 0" scale="0.2 0.2 0.2" link="yosemiteContainer"></a-sphere>
+        <a-sphere class="collidable" mixin="portal" static-body radius="5" src="https://nationalparktour.imfast.io/gcscreenshot.png" position="-13 -7.094 1.523" rotation="90 0 0" scale="0.2 0.2 0.2" link="gcContainer"></a-sphere>
         <!-- <a-sphere class="collidable" mixin="portal" static-body radius="5" color="white" position="-11.561 2.509 1.523" scale="0.2 0.2 0.2" link="yellowstoneContainer"></a-sphere> -->
         <a-image src="#USTerrainAsset" width="4288" height="2459" scale="0.02 0.02 0.02"></a-image>
         <a-plane color="#172759" position="0 0 -0.1" height="1000" width="1000" rotation="0 0 0"></a-plane>
@@ -49,21 +53,21 @@
           <a-entity id="deadHorseTerrainContainer" position="0 -6 0"  visible="false">
             <a-entity light="type: ambient; color: #FFFFF; intensity: 0.5" position="0 8.504 0" ></a-entity>
 
-            <a-sky color="#9FC5E9"></a-sky>
-            <a-sphere class="collidable" mixin="portal" radius="5" position="-11.06 5.221 -1.138 " scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/dead-horse%201.jpg" link="deadHorseOverlook" ></a-sphere>
-            <a-sphere class="collidable" mixin="portal" radius="5" position="-0.318 4.2 -6.976" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/potash%201.jpg" link="potash1" ></a-sphere>
+            <a-sky color="#89AFDE"></a-sky>
+            <a-sphere class="collidable" mixin="portal" radius="5" position="-11.06 6 -1.138 " scale="0.2 0.2 0.2" src="https://nationalparktour.imfast.io/dead-horse%201.jpg" link="deadHorseOverlook" ></a-sphere>
+            <a-sphere class="collidable" mixin="portal" radius="5" position="-0.318 5 -6.976" scale="0.2 0.2 0.2" src="https://nationalparktour.imfast.io/potash%201.jpg" link="potash1" ></a-sphere>
             <a-entity gltf-model="#deadHorseTerrainAsset" scale="0.01 0.01 0.01"></a-entity> 
             <a-plane color="#76422A" position="0 -0.1 0" height="1000" width="1000" rotation="-90 0 0"></a-plane>
           </a-entity>
             <a-sky id="deadHorseOverlook" class="360image" src="https://nationalparktour.imfast.io/dead-horse%201.jpg" visible="false"></a-sky>
             <a-sky id="potash1" class="360image" src="https://nationalparktour.imfast.io/potash%201.jpg" visible="false" ></a-sky>
         <a-entity id="yosemiteContainer" position="-10 -10 10" rotation="0 0 0" visible="false">
-          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="26.317 3.842 -4.046" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/el_cap.jpg" link="elCapitan"></a-sphere>
-          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="-2.982 4.781 12.013" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/half_dome.jpg" link="halfDome"></a-sphere>
-          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="15.464 4.407 -11.092" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/tunnel_view.jpg" link="tunnelView"></a-sphere>
+          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="-3.829 4.103 1.745" scale="0.3 0.3 0.3" src="https://nationalparktour.imfast.io/el_cap.jpg" link="elCapitan"></a-sphere>
+          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="7.309 4.920 -1.009" scale="0.3 0.3 0.3" src="https://nationalparktour.imfast.io/half_dome.jpg" link="halfDome"></a-sphere>
+          <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="-10.596 3.260 2.066" scale="0.3 0.3 0.3" src="https://nationalparktour.imfast.io/tunnel_view.jpg" link="tunnelView"></a-sphere>
           <a-entity gltf-model="#yosemiteTerrainAsset" scale="0.001 0.001 0.001"></a-entity>
           <!-- <a-sound src="src: url(click.mp3)" autoplay="true" position="0 0 0"></a-sound> -->
-          <a-sky color="#9FC5E9" ></a-sky>
+          <a-sky color="#89AFDE" ></a-sky>
           <a-plane color="#967861" position="0 -0.1 0" height="1000" width="1000" rotation="-90 0 0"></a-plane>
         </a-entity> 
           <a-sky id="elCapitan" class="360image" src="https://nationalparktour.imfast.io/el_cap.jpg" visible="false"></a-sky>
@@ -73,11 +77,11 @@
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="23.916 2.7 17.832" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/grandview.jpg" link="grandview"></a-sphere>
           <a-sphere class="collidable" mixin="portal" color="white" radius="5" position="33.206 2.7 8.554" scale="0.15 0.15 0.15" src="https://nationalparktour.imfast.io/angels_window.jpg" link="angels_window"></a-sphere>
           <a-entity gltf-model="#gcTerrainAsset" scale="0.0007 0.0007 0.0007"></a-entity>
-          <a-plane color="#ED966D" position="0 0.271 0" height="1000" width="1000" rotation="-90 0 0"></a-plane>
+          <a-plane color="#94674C" position="0 0.271 0" height="1000" width="1000" rotation="-90 0 0"></a-plane>
           <!-- <a-entity light="type: ambient; color: #FFFFF; intensity: 0.5" position="0 8.504 0" ></a-entity> -->
 
           <!-- <a-sound src="src: url(click.mp3)" autoplay="true" position="0 0 0"></a-sound> -->
-          <a-sky color="#9FC5E9" ></a-sky>
+          <a-sky color="#89AFDE" ></a-sky>
         </a-entity>
           <a-sky id="grandview" class="360image" src="https://nationalparktour.imfast.io/grandview.jpg" visible="false"></a-sky>
           <a-sky id="angels_window" class="360image" src="https://nationalparktour.imfast.io/angels_window.jpg" visible="false"></a-sky>
@@ -111,6 +115,19 @@
 
       
     </a-scene>
+    <button type="button" class="btn btn-warning">Report Bug</button>    
+    <p>Welcome! The goal of this project is to provide a cross platform interactive tour of major national parks in a single page of HTML. Since this app is currently in alpha you may experience bugs.</p> 
+    <p>Please help make this software better by reporting them as issues using the button above. We appreciate your patience! In the mean time check out the "Common Issues and Troubleshooting section below.</p>
+    <strong>Instructions:</strong>
+    <p>{User instructions will go in a drop down here}</p>
+    <strong>Temporary Solutions to Common Issues</strong>
+
+    <p>Issue: When using keyboard and mouse controls, user rotates slowly and uncontrollably.</p>
+    <p>Solution: Open application in new browser tab.</p>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
   <script>
     
